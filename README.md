@@ -21,7 +21,7 @@ The Online Library Management System is a full-stack project built using React, 
 
 - Clone the repository;
 ```
-git clone https://github.com/rlopxhan21/Online-Library-Management-System-Backend-.git
+git clone https://github.com/rlopxhan21/Online-Library-Management-System-Backend.git
 ```
 
 - Install dependicies
