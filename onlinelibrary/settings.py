@@ -119,7 +119,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Inheriting AbstractUser
 
-# AUTH_USER_MODEL = 'useraccount.User'
+AUTH_USER_MODEL = 'useraccount.CustomUser'
 
 # Cross Origin Resource Sharing (CORS)
 
@@ -127,10 +127,10 @@ CORS_ALLOWED_ORIGINS = config("CORS_ALLOWED_ORIGINS", cast=Csv())
 
 # Djoser Auth
 
-# DJOSER = {
-#     'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
-#     'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
-#     'ACTIVATION_URL': '#/activate/{uid}/{token}',
-#     'SEND_ACTIVATION_EMAIL': False,
-#     'SERIALIZERS': {},
-# }
+DJOSER = {
+    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': False,
+    'SERIALIZERS': {},
+}
