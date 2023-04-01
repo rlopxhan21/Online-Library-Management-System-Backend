@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin, AbstractUser
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -22,6 +23,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     full_name = models.CharField(max_length=256)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+
     
 
     USERNAME_FIELD ='email'
@@ -32,20 +34,3 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
-
-# class User(AbstractUser):
-#     # Override the 'username' field to make it non-unique
-#     username = None
-
-#     # Add any additional fields you need
-#     age = models.PositiveIntegerField()
-#     gender = models.CharField(max_length=10)
-
-#     AbstractUser._meta.get_field('email')._unique = True
-#     AbstractUser._meta.get_field('email').blank = False
-#     AbstractUser._meta.get_field('email').null = False
-
-#     # Update the REQUIRED_FIELDS to reflect the new required fields
-#     EMAIL_FIELD = 'email'
-#     USERNAME_FIELD = 'email'
-#     REQUIRED_FIELDS = []

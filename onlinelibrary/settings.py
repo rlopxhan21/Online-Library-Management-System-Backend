@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'useraccount.apps.UseraccountConfig',
+    'book.apps.BookConfig',
     'rest_framework',
     'rest_framework_simplejwt',
     'djoser',

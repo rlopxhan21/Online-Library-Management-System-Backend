@@ -7,4 +7,5 @@ urlpatterns = [
     path("auth/", include("useraccount.urls")),
     path('auth/', include('djoser.urls')),
 
+    path('book/', include('book.urls',namespace='book'))
 ]
