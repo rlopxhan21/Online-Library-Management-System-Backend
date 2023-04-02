@@ -34,7 +34,7 @@ class Book(models.Model):
     releases_time = models.CharField(max_length=255)
     start_from = models.DateField(null=True, blank=True)
     end_at = models.DateField(null=True, blank=True)
-    rating = models.IntegerField(default=4, validators=[MinValueValidator(0.1), MaxValueValidator(5)])
+    rating = models.FloatField(default=4, validators=[MinValueValidator(0.1), MaxValueValidator(5)])
     status = models.CharField(max_length=1, default=Status.AVAILABLE, choices=Status.choices)
     is_active = models.BooleanField(default=True)
     
