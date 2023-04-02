@@ -28,9 +28,10 @@ class Book(models.Model):
     photo = models.TextField()
     summary = models.TextField()
     releases_time = models.CharField(max_length=255)
-    updated = models.DateField(null=True, blank=True)
-    booked_till = models.DateField(null=True, blank=True)
+    start_from = models.DateField(null=True, blank=True)
+    end_at = models.DateField(null=True, blank=True)
     status = models.CharField(max_length=1, default=Status.AVAILABLE, choices=Status.choices)
+    is_active = models.BooleanField(default=True)
     
     genre = models.ForeignKey(Genre, on_delete=models.PROTECT, related_name="genre_book_collection")
     author = models.ManyToManyField(Author, related_name="author_book_collection")
