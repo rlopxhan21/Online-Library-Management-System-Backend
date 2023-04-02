@@ -19,7 +19,7 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", cast=bool)
 
-ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=Csv())
+ALLOWED_HOSTS = ['library-software-rlopxhan21.heroku.com']
 
 
 # Application definition
@@ -133,7 +133,10 @@ AUTH_USER_MODEL = 'useraccount.CustomUser'
 
 # Cross Origin Resource Sharing (CORS)
 
-CORS_ALLOWED_ORIGINS = config("CORS_ALLOWED_ORIGINS", cast=Csv())
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "https://online-library-management-system.vercel.app"
+]
 
 # REST Framework config
 
