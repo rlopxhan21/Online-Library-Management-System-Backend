@@ -12,6 +12,6 @@ urlpatterns =[
     path('genre/<int:pk>/', GenreDetail.as_view(), name="genre_detail"),
 
     path('book/', BookView.as_view(), name="book_list"),
-    path('book/<int:pk>/', BookDetail.as_view() , name="book_detail"),
-    path('book/<int:pk>/update/', BookUpdateView.as_view(), name="book_create")
+    path('book/<int:pk>/<slug:slug>/', BookDetail.as_view() , name="book_detail"),
+    path('book/<int:pk>/<slug:slug>/update/', BookUpdateView.as_view(), name="book_create")
 ]
