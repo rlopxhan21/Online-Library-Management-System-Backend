@@ -1,6 +1,10 @@
 from pathlib import Path
 from decouple import config, Csv
 from datetime import timedelta
+import django_heroku
+import dj_database_url
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,6 +37,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'djoser',
     'corsheaders',
+    'django_heroku',
 ]
 
 MIDDLEWARE = [
@@ -76,6 +81,9 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# Parse database configuration from $DATABASE_URL
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 
 # Password validation
