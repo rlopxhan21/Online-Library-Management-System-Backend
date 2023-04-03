@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.exceptions import ValidationError
 
 
 from useraccount.models import CustomUser
@@ -47,6 +48,15 @@ class Book(models.Model):
             self.slug = slugify(self.name)
         
         super().save(*args, **kwargs)
+
+    def clean(self):
+        if self.patrons:
+            assigned_books_count = Book.objects.filter(patrons=self.patrons).count()
+
+            if assigned_books_count >= 3:
+                raise ValidationError("A patron can borrow a maximum of 3 books.")
+            
+        super().clean()
 
     def __str__(self) -> str:
         return self.name
