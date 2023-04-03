@@ -107,15 +107,17 @@ class BookUpdateView(mixins.UpdateModelMixin, generics.GenericAPIView):
             end_at = None
             patrons_id = None
 
-        if status == "A" and book.patrons:
-            if self.request.user.email != book.patrons.email:
-                raise serializers.ValidationError("You do not have permission to perform this actions.")
+        
 
-        if not self.request.user.is_superuser and (status == "R" or status =="B"):
-            if Book.objects.filter(end_at__gte=today, id=pk):
-                raise serializers.ValidationError("This book is not available")
-            elif Book.objects.filter(patrons=self.request.user).count() >=3:
-                raise serializers.ValidationError("You cannot get more than 3 books at a time.")
+        if not self.request.user.is_superuser:
+            if status == "A" and book.patrons:
+                if self.request.user.email != book.patrons.email:
+                    raise serializers.ValidationError("You do not have permission to perform this actions.")
+            elif status == "R" or status =="B":
+                if Book.objects.filter(end_at__gte=today, id=pk):
+                    raise serializers.ValidationError("This book is not available")
+                elif Book.objects.filter(patrons=self.request.user).count() >=3:
+                    raise serializers.ValidationError("You cannot get more than 3 books at a time.")
 
 
         return serializer.save(patrons_id=patrons_id, start_from=start_from, end_at=end_at, name=book.name, photo=book.photo, summary=book.summary, releases_time=book.releases_time, is_active=book.is_active, genre=book.genre, slug=book.slug, rating=book.rating)
