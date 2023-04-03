@@ -107,8 +107,6 @@ class BookUpdateView(mixins.UpdateModelMixin, generics.GenericAPIView):
             end_at = None
             patrons_id = None
 
-        
-
         if not self.request.user.is_superuser:
             if status == "A" and book.patrons:
                 if self.request.user.email != book.patrons.email:
