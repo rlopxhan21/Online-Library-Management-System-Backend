@@ -106,7 +106,7 @@ class BookUpdateView(mixins.UpdateModelMixin, generics.GenericAPIView):
             end_at = None
 
         if not self.request.user.is_superuser:
-            if Book.objects.filter(end_at__gte=today):
+            if Book.objects.filter(end_at__gte=today, id=pk):
                 raise serializers.ValidationError("This book is not available")
 
         return serializer.save(patrons_id=self.request.user.id, start_from=start_from, end_at=end_at, name=book.name, photo=book.photo, summary=book.summary, releases_time=book.releases_time, is_active=book.is_active, genre=book.genre, slug=book.slug, rating=book.rating)
