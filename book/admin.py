@@ -7,5 +7,5 @@ admin.site.register(Author)
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ['name', 'author', 'status', 'genre', 'patrons', "end_at"]
+    list_display = ['name', 'status', 'genre', 'patrons', "end_at"]
     prepopulated_fields= {"slug": ('name',)}
