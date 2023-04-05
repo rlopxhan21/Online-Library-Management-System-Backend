@@ -3,6 +3,9 @@ from rest_framework import serializers
 from .models import Author, Genre, Book
 
 class BookViewSerializer(serializers.ModelSerializer):
+    patrons = serializers.StringRelatedField(read_only=True)
+    genre = serializers.StringRelatedField(read_only=True)
+    author = serializers.StringRelatedField(read_only=True, many=True)
     class Meta:
         model = Book
         fields = "__all__"
