@@ -2,10 +2,10 @@ from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from .models import CustomUser
-from book.serializers import BookSerialzer
+from book.serializers import BookViewSerializer
 
 class CustomUserSerializer(serializers.ModelSerializer):
-    borrowed_book_collection = BookSerialzer(many=True, read_only=True)
+    borrowed_book_collection = BookViewSerializer(many=True, read_only=True)
 
     class Meta:
         model = CustomUser
